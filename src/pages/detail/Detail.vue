@@ -6,12 +6,10 @@
       :bannerImgs="gallaryImgs"
      ></detail-banner>
      <detail-header ></detail-header>
-     <detail-list></detail-list>
-     <div class="content">
-        <detail-list :list="list"></detail-list>
-     </div>
+    <div class="content">
+      <detail-list :list="list"></detail-list>
+    </div>
   </div>
-
 </template>
 
 <script>

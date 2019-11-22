@@ -1,11 +1,11 @@
+var  defaultCity =" "
 
-let  defaultCity ='上海'
-try {
+/* try {
    if(localStorage.city){
      defaultCity=localStorage.city
    }
-} catch (e) {}
+} catch (e) {} */
 
 export default {
-    city:defaultCity
+    city:defaultCity,
   }

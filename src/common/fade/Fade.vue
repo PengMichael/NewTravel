@@ -1,13 +1,12 @@
 <template>
     <transition>
-      <slot>  </slot>
+      <slot></slot>
     </transition>
 </template>
 
 <script>
   export default{
     name: 'FadeAnimation',
-    
   }
     
 </script>

@@ -4,11 +4,11 @@
        <img class="banner-image" :src="bannerImg"/> 
         <div class="banner-info">
          <div class="banner-title">
-           海洋世界
+           {{this.sightName}}
          </div>
          <div class="banner-number"> 
            <span class="banner-icon iconfont" >&#xe647;</span>
-           39
+           {{this.bannerImgs.length}}
          </div>
       </div>
     </div>
@@ -87,9 +87,4 @@
          font-size: .24rem
          .banner-icon
            font-size: .24rem
-      
-      
-      
-      
-       
 </style>

@@ -1,6 +1,6 @@
 <template>
    <div>
-     <router-link v-show="showAbs" tag="div" to="/" class="header-abs">
+     <router-link v-show="showAbs" tag="div" to="/" class="header-abs" >
        <div class="iconfont header-abs-back">&#xe624;</div>
      </router-link>
      <div v-show="!showAbs" class="header-fixed" :style="opacityStyle">
@@ -26,23 +26,23 @@
       methods:{
         handleScroll(){
            const top = document.documentElement.scrollTop
-          if(top >60 ) {
-            let opacity =top /140
-            opacity =opacity > 1 ? 1 :opacity
-            this.opacityStyle ={
-              opacity
-            }
+          if(top > 60 ) {
+            let opacity = top/140
+            opacity = opacity > 1 ? 1 :opacity
+            this.opacityStyle = { opacity }
             this.showAbs = false
           } else {
             this.showAbs = true
+            console.log(showAbs)
           }
         }
       },
-      activated () {
-        window.addEventListener('scroll',this.handleScroll)
+      mounted () {
+        window.addEventListener('scroll', this.handleScroll)
+        console.log("q")
       },
-      deactivated () {
-        window.removeEventListener('scroll',this.handleScroll)
+      unmounted () {
+        window.removeEventListener('scroll', this.handleScroll)
       }
     }
 </script>
