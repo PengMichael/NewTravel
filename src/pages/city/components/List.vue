@@ -4,10 +4,10 @@
      <div class="area">
        <div class="title border-topbottom" >当前城市</div>
        <div class="button-list">
-         <div class="button-wrapper">
-          <router-link to="/">
-           <div class="button">	{{this.$route.query.cur}}</div>
-           </router-link>
+         <div class="button-wrapper" @click="handleCityClick(local)">
+        <!--  <router-link to="/"> -->
+            <div class="button"  >{{local}}</div>
+<!--   </router-link> -->
          </div>
        </div>
      </div>
@@ -43,8 +43,16 @@
 <script>
   import BScroll from 'better-scroll'
   import {mapState,mapMutations} from 'vuex'
+  import { location } from  '../../../store/amap.js'
   export default{
     name:'CityList',
+    data () {
+          return{
+             local:'定位中',
+             current:'',
+             //change:true
+          }
+    },
     props:{
       hot:Array,
       cities:Object,
@@ -57,6 +65,24 @@
         })  //state辅助函数mapState：将$this.$store.state.city=>this.city
     },
     methods:{
+      checkCity ( ) {
+       console.log("1")
+      // if(this.city==" "){
+          /**获取地图定位*/
+            let _that = this
+            let _change = this
+            let geolocation = location.initMap("map-container")
+            geolocation.getLocalCity(function(status, result) {
+                  if (status === 'complete' && result.info === 'OK') {
+                      if (result && result.city && result.bounds) {
+                           _that.local   = result.city.split("市")[0]
+                           _that.current = result.city.split("市")[0]
+                      }
+                  } else {
+                  
+                  }
+              });
+        }, 
       handleCityClick(city){
       //  this.$store.dispatch('changeCity',city) //dispatch派发给action
      // this.$store.commit('changeCity',city)
@@ -67,6 +93,8 @@
     },
     mounted(){
         this.scroll=new BScroll(this.$refs.wrapper)
+        this.checkCity()// 调用获取地理位置
+      
      },
       watch:{
        letter(){

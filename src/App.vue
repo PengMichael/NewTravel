@@ -2,7 +2,7 @@
   <div id="app">
    <!-- <img src="./assets/logo.png"> -->
       <!-- <keep-alive> 可以让界面保持活性  exclude不被缓存 -->
-     <keep-alive exclude="Detail">
+     <keep-alive exclude="Detail,Home">
        <router-view/>
      </keep-alive> 
   </div>

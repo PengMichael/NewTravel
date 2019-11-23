@@ -7,12 +7,11 @@
 			<span class="iconfont">&#xe632;</span>
 			输入城市/景点/游玩主题
      </div>
-		<!-- <router-link to="/city"> -->
-		 <div class="header-right" @click="currentCity()">
-			{{local}} 
-			<span class="iconfont arrow-icon">&#xe615;</span>
-		 </div>      
-		<!-- </router-link> -->
+       <router-link to="/city"> <div class="header-right">
+           <div class="header-right-left" id="localCity"> {{city}} </div>	 
+			   <span class="iconfont arrow-icon">&#xe615;</span>
+		   </div>      
+      </router-link>
 	</div>
 </template>
 
@@ -36,44 +35,41 @@
     },
     methods: {
              checkCity() {
-               console.log(this.city)
                if(this.city==" "){
                  /**获取地图定位*/
                    let _that = this
-                   let _change = this
                    let geolocation = location.initMap("map-container")
                    geolocation.getLocalCity(function(status, result) {
                          if (status === 'complete' && result.info === 'OK') {
                              if (result && result.city && result.bounds) {
                                   _that.local   = result.city.split("市")[0]
+                                  //console.log(_that.local )
                                   _that.current = result.city.split("市")[0]
-                                  console.log(_that.current)
-                                  //_change.changeLocation()
+                                   document.getElementById("localCity").innerHTML = _that.local
+                                 // console.log(_that.current)
+                                // _that.changeLocation()
                              }
                          } else {
-                           
+                              document.getElementById("localCity").innerHTML ="定位中.."
                          }
-                        
                      });
-                 }else {
-                   let _changeCity =this
-                       _changeCity.local= this.city
-                       console.log(_changeCity.local)
-                 }
-               },
-               /* changeLocation() {
-                 console.log(this.city)
+                 } else {
+                    document.getElementById("localCity").innerHTML = this.city
+                 } 
+               }, 
+               changeLocation() {
+                // console.log(this.city)
                  if(this.city!=" " && this.city!= undefined){
                    let _changeCity =this
                        _changeCity.local= this.city
                        //console.log(_changeCity.local)
                  } 
-               }, */
-               currentCity() {
-               /*   let cur = this.current.split(" ")
-                   */
+               },
+              /* currentCity() {
+                 let cur = this.current.split(" ")
+                  
                  this.$router.push({path: '/city', query: { cur:this.current }})
-                 },
+                 }, */
              },
          mounted() {
             this.checkCity()// 调用获取地理位置
@@ -110,6 +106,8 @@
       float: right
       text-align: center
       color: #fff
+      .header-right-left
+        float:left
       .arrow-icon
         margin-left: -.04rem
         font-size: .24rem

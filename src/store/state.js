@@ -1,5 +1,5 @@
 var  defaultCity =" "
-
+var  localCity ="定位中"
 /* try {
    if(localStorage.city){
      defaultCity=localStorage.city
@@ -8,4 +8,5 @@ var  defaultCity =" "
 
 export default {
     city:defaultCity,
+    lo:localCity
   }

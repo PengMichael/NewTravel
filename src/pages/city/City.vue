@@ -1,7 +1,7 @@
 <template>
    <div>
    <city-header></city-header>
-   <city-search :cities="cities"></city-search>
+   <city-search :cities="cities" ></city-search>
    <city-list 
     :hot="hotCities"
     :cities="cities"
@@ -26,7 +26,7 @@
       return{
         hotCities:[],
         cities:{ },
-        letter:''
+        letter:'',
       }
     },
     components:{
@@ -53,7 +53,7 @@
         this.letter=letter
       }
     },
-    mounted(){
+    mounted(){ 
       this.getCityInfo()
     }
   }
